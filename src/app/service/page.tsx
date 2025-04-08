@@ -184,10 +184,10 @@ export default function Service({}: Props) {
         }
       });
 
-      serviceAdvisors: [] = serviceAdvisors.map((advisor: any) => ({
-        ...advisor,
-        totalJobCardAmt: roundToTwoDecimals(advisor.totalJobCardAmt),
-      }));
+      // serviceAdvisors: [] = serviceAdvisors.map((advisor: any) => ({
+      //   ...advisor,
+      //   totalJobCardAmt: roundToTwoDecimals(advisor.totalJobCardAmt),
+      // }));
 
       console.log("ALL ADVISOPR STATS - ", serviceAdvisors);
 
