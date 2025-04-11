@@ -22,22 +22,22 @@ import { BaseRepository } from "./BaseRepo";
 
 export const config = {
   endpoint: "https://cloud.appwrite.io/v1",
-  // platform: "com.index.t3",
-  projectId: "66b10a0100095b4634e4",
-  databaseId: "66b10c670021dc021477",
-  carsCollectionId: "66deb8920021a5819b2c",
-  tempCarsCollectionId: "66e933af0022ed863b96",
-  jobCardsCollectionId: "66e80a830013e7a81f31",
-  partsCollectionId: "66f6ce58000446f6aeaf",
-  labourCollectionId: "66fa5dc6003941f79697",
-  invoicesCollectionId: "6710ba53003b4b25a23d",
-  historyCollectionId: "670cbc13003d80c32176",
-  invoiceStorageBucketId: "677e05b70025ceed10e4",
-  imageStorageBucketId: "67053962002be8598a04",
-  pdfStorageBucketId: "67c97ee0000a45e85251",
-  carModelsCollectionId: "678e143f003c388e2603",
-  insuranceProvidersCollectionId: "67963228001b5bf116e6",
-  deletedJobCardsCollectionId: "67989f07000005e743d4",
+  projectId: "67f62681000d581fbd62",
+  databaseId: "67f626ce002d95823330",
+  carsCollectionId: "67f62e77001f5e75b2cf",
+  tempCarsCollectionId: "67f62e9e0028c89757a3",
+  jobCardsCollectionId: "67f62e880001ede05456",
+  partsCollectionId: "67f62ead00333364707b",
+  labourCollectionId: "67f62ebb0001c72448e4",
+  invoicesCollectionId: "67f62ed30005a230803c",
+  historyCollectionId: "67f62ec90016bf81846a",
+  invoiceStorageBucketId: "67f637a6001fea1ecdbd",
+  imageStorageBucketId: "67f6377f0013254d4aac",
+  pdfStorageBucketId: "67f637c00003e786c71b",
+  carModelsCollectionId: "67f62ee8001ee8554721",
+  insuranceProvidersCollectionId: "67f62ef2003d1ac60a10",
+  deletedJobCardsCollectionId: "67f62efd0031a65c0ff0",
+  fetchUsersFunctionId: "67f635c700018819096c",
 };
 
 export let client: any;
@@ -48,7 +48,6 @@ export let functions: any;
 
 client = new Client();
 client.setEndpoint(config.endpoint).setProject(config.projectId);
-//   .setPlatform(config.platform);
 
 account = new Account(client);
 databases = new Databases(client);
@@ -70,46 +69,6 @@ if (useDev) {
 } else {
   apiUrl = "https://t3-next-dev.vercel.app";
 }
-
-// export async function fetchJobCardsBasedonTime(filterType = "all") {
-//   try {
-//     const queries = [];
-
-//     // Get current date and time
-//     const currentDate = new Date();
-//     const currentYear = currentDate.getFullYear();
-//     const currentMonth = String(currentDate.getMonth() + 1).padStart(2, "0"); // Months are 0-based
-
-//     if (filterType === "month") {
-//       // Filter for the current month
-//       const startOfMonth = `${currentYear}-${currentMonth}-01T00:00:00Z`;
-//       const endOfMonth = new Date(currentYear, currentMonth, 0).toISOString();
-//       queries.push(Query.greaterThanEqual("createdAt", startOfMonth));
-//       queries.push(Query.lessThanEqual("createdAt", endOfMonth));
-//     } else if (filterType === "year") {
-//       // Filter for the current yearD
-//       const startOfYear = `${currentYear}-01-01T00:00:00Z`;
-//       const endOfYear = `${currentYear}-12-31T23:59:59Z`;
-//       queries.push(Query.greaterThanEqual("createdAt", startOfYear));
-//       queries.push(Query.lessThanEqual("createdAt", endOfYear));
-//     }
-
-//     // Fetch documents based on queries
-//     const response = await databases.listDocuments(
-//       config.databaseId,
-//       config.jobCardsCollectionId,
-//       queries
-//     );
-
-//     console.log(
-//       `Fetched ${response.documents.length} job cards for filter: ${filterType}`
-//     );
-//     return response.documents;
-//   } catch (error) {
-//     console.error("Error fetching job cards:", error);
-//     throw error;
-//   }
-// }
 
 export const getInvoiceNumber = async (
   jobCardId: string,
@@ -340,7 +299,7 @@ export const loginUser = async (email: string, password: string) => {
 };
 
 export const listAllUsers = async () => {
-  const response = await functions.createExecution("6731d19d00250e7e0b6f");
+  const response = await functions.createExecution(config.fetchUsersFunctionId);
   const obj = JSON.parse(response.responseBody);
   const users = obj.users.users;
   return users;
