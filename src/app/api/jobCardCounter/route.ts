@@ -1,20 +1,20 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Client, Databases } from "node-appwrite";
-
+import { config } from "@/lib/appwrite";
 // Initialize Appwrite Client
 const client = new Client();
 const databases = new Databases(client);
 
 client
   .setEndpoint("https://cloud.appwrite.io/v1") // Replace with your Appwrite endpoint
-  .setProject("66b10a0100095b4634e4") // Replace with your project ID
-  .setKey("standard_ccfafcfdb4ab4b7460d7379de12a0df172814cd321d0c231626e0e03264112144430c0a3eea131046a21b35d9d06766f6b6a8bb2404af24c25c48eea47696d20e1b91271d8b737094c9a8c363c13fcf15ae571f3c78bdef565d3bc93cafed20d9a724658a780267ae9b4bb98ed8dc36f8eede5cbbc571cde970b9894cb15cc21"); // Replace with your API Key
+  .setProject(config.projectId) // Replace with your project ID
+  .setKey("standard_da0912f9efcaa6d841fbc40fcea9b406f1f7ece6dc34d1430c2b71d5a9c2b5ad9538dc8545395cb49aaf7b13da60ffd63aee40119278b5daaf180da5962b44c006a6aa1a5ad7d55fcb4eed7987434c2d11a9cf0f4896511d777f5ecfd935f41ca2110174da6db3a41a6600dc5293202d099b0698766e81ed1f98beb08217769c"); // Replace with your API Key
 
 export async function POST(req: NextRequest) {
   try {
     const counterId = "counter_JCARD"; // ID for the global job card counter document
-    const databaseId = "66b10c670021dc021477"; // Replace with your database ID
-    const collectionId = "67605a0400085bcc0452"; // Replace with your collection ID
+    const databaseId = config.databaseId; // Replace with your database ID
+    const collectionId = config.atomicCounterCollectionId; // Replace with your collection ID
 
     let counterDocument;
 

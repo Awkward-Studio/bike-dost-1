@@ -38,6 +38,7 @@ export const config = {
   insuranceProvidersCollectionId: "67f62ef2003d1ac60a10",
   deletedJobCardsCollectionId: "67f62efd0031a65c0ff0",
   fetchUsersFunctionId: "67f635c700018819096c",
+  atomicCounterCollectionId: "67f62ee1003d0ffca245",
 };
 
 export let client: any;
