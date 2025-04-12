@@ -65,7 +65,7 @@ const CarHistory = (props: Props) => {
             <div className="font-semibold">History</div>
           </Button>
         </DialogTrigger>
-        <DialogContent className="overflow-scroll max-h-dvh focus:outline-none">
+        <DialogContent className="overflow-scroll max-h-dvh focus:outline-hidden">
           <DialogHeader>
             <DialogTitle className="flex justify-start items-center space-x-2">
               <History />

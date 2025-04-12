@@ -56,7 +56,7 @@ export const SearchSelectNEW: React.FC<SearchSelectProps> = ({
   return (
     <div className="relative w-full" ref={dropdownRef}>
       <button
-        className="w-full flex justify-between items-center border rounded-md px-3 py-2 focus:outline-none focus:ring focus:ring-gray-200"
+        className="w-full flex justify-between items-center border rounded-md px-3 py-2 focus:outline-hidden focus:ring-3 focus:ring-gray-200"
         onClick={() => setOpen((prev) => !prev)}
         disabled={disabled}
         aria-expanded={open}
@@ -71,7 +71,7 @@ export const SearchSelectNEW: React.FC<SearchSelectProps> = ({
             placeholder="Search..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full px-3 py-2 border-b border-gray-200 focus:outline-none"
+            className="w-full px-3 py-2 border-b border-gray-200 focus:outline-hidden"
           />
           {filteredData.length > 0 ? (
             <ul className="py-1">

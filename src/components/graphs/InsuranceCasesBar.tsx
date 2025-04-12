@@ -236,7 +236,7 @@ export function InsuranceCasesBar({ jobCards, currentSelectedTimeline }: any) {
                 dataKey="insuranceCompany"
                 position="insideLeft"
                 offset={8}
-                className="fill-[--color-label]"
+                className="fill-(--color-label)"
                 fontSize={12}
               />
               <LabelList

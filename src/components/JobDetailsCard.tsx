@@ -19,10 +19,10 @@ export default function JobDetailsCard({ data, jobCardTotal, diagnosis }: any) {
   );
 
   return (
-    <div className="flex flex-col min-h-[175px] h-fit min-w-[420px] w-max border-2 border-gray-200 rounded-lg shadow-sm p-4">
+    <div className="flex flex-col min-h-[175px] h-fit min-w-[420px] w-max border-2 border-gray-200 rounded-lg shadow-xs p-4">
       <div className="mb-5">Job Details</div>
       <div className="flex flex-row">
-        <div className="border-2 rounded-full p-4 w-fit mb-6 bg-gray-200 shadow-sm mr-8">
+        <div className="border-2 rounded-full p-4 w-fit mb-6 bg-gray-200 shadow-xs mr-8">
           <Wrench />
         </div>
         <div className="flex flex-col">

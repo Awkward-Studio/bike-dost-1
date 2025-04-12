@@ -2,10 +2,10 @@ import React from "react";
 
 export default function DetailsCard({ title, icon, dataHead, data }: any) {
   return (
-    <div className="flex flex-col min-h-[175px] h-fit min-w-[420px] w-fit border-2 border-gray-200 rounded-lg shadow-sm p-4">
+    <div className="flex flex-col min-h-[175px] h-fit min-w-[420px] w-fit border-2 border-gray-200 rounded-lg shadow-xs p-4">
       <div className="mb-5">{title}</div>
       <div className="flex flex-row">
-        <div className="border-2 rounded-full p-4 w-fit mb-6 bg-gray-200 shadow-sm mr-8">
+        <div className="border-2 rounded-full p-4 w-fit mb-6 bg-gray-200 shadow-xs mr-8">
           {icon}
         </div>
         <div className="flex flex-col">

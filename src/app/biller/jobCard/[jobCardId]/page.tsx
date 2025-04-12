@@ -974,7 +974,7 @@ export default function jobCard({
                       : "Add Insurance Details"}
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-none">
+                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-hidden">
                   <DialogHeader>
                     <DialogTitle>Insurance Details</DialogTitle>
                     <DialogDescription>
@@ -1034,7 +1034,7 @@ export default function jobCard({
                     Edit Customer Name
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-none">
+                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-hidden">
                   <DialogHeader>
                     <DialogTitle>Customer Name</DialogTitle>
                     <DialogDescription>Customer Name Details</DialogDescription>
@@ -1077,7 +1077,7 @@ export default function jobCard({
                     Edit Customer Address
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-none">
+                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-hidden">
                   <DialogHeader>
                     <DialogTitle>Customer Address</DialogTitle>
                     <DialogDescription>
@@ -1122,7 +1122,7 @@ export default function jobCard({
                     Edit Customer PhoneNumber
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-none">
+                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-hidden">
                   <DialogHeader>
                     <DialogTitle>Customer PhoneNumber</DialogTitle>
                     <DialogDescription>Customer PhoneNumber</DialogDescription>
@@ -1168,7 +1168,7 @@ export default function jobCard({
                     Edit Customer Email
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-none">
+                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-hidden">
                   <DialogHeader>
                     <DialogTitle>Customer Email</DialogTitle>
                     <DialogDescription>Customer Email</DialogDescription>
@@ -1214,7 +1214,7 @@ export default function jobCard({
                     Edit Customer GST No.
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-none">
+                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-hidden">
                   <DialogHeader>
                     <DialogTitle>Customer GST</DialogTitle>
                     <DialogDescription>Customer GST Details</DialogDescription>
@@ -1255,7 +1255,7 @@ export default function jobCard({
                     Observation and Remarks
                   </Button>
                 </DialogTrigger>
-                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-none">
+                <DialogContent className="sm:max-w-[425px] overflow-visible max-h-screen focus:outline-hidden">
                   <DialogHeader>
                     <DialogTitle>Observation and Remarks</DialogTitle>
                   </DialogHeader>

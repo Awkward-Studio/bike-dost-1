@@ -406,7 +406,7 @@ export function CurrentCarsPie() {
           <select
             value={rangeType}
             onChange={(e) => setRangeType(e.target.value)}
-            className="border p-2 rounded-md shadow-sm"
+            className="border p-2 rounded-md shadow-xs"
           >
             <option value="week">This Week</option>
             <option value="month">This Month</option>
@@ -428,7 +428,7 @@ export function CurrentCarsPie() {
                 selectsStart
                 startDate={customRange.startDate}
                 endDate={customRange.endDate}
-                className="border p-2 rounded-md shadow-sm"
+                className="border p-2 rounded-md shadow-xs"
                 placeholderText="Start Date"
               />
               <DatePicker
@@ -442,7 +442,7 @@ export function CurrentCarsPie() {
                 selectsEnd
                 startDate={customRange.startDate}
                 endDate={customRange.endDate}
-                className="border p-2 rounded-md shadow-sm"
+                className="border p-2 rounded-md shadow-xs"
                 placeholderText="End Date"
               />
             </div>
@@ -553,7 +553,7 @@ export function CurrentCarsPie() {
 //           <select
 //             value={rangeType}
 //             onChange={(e) => setRangeType(e.target.value)}
-//             className="border p-2 rounded-md shadow-sm"
+//             className="border p-2 rounded-md shadow-xs"
 //           >
 //             <option value="week">This Week</option>
 //             <option value="month">This Month</option>
@@ -575,7 +575,7 @@ export function CurrentCarsPie() {
 //                 selectsStart
 //                 startDate={customRange.startDate}
 //                 endDate={customRange.endDate}
-//                 className="border p-2 rounded-md shadow-sm"
+//                 className="border p-2 rounded-md shadow-xs"
 //                 placeholderText="Start Date"
 //               />
 //               <DatePicker
@@ -589,7 +589,7 @@ export function CurrentCarsPie() {
 //                 selectsEnd
 //                 startDate={customRange.startDate}
 //                 endDate={customRange.endDate}
-//                 className="border p-2 rounded-md shadow-sm"
+//                 className="border p-2 rounded-md shadow-xs"
 //                 placeholderText="End Date"
 //               />
 //             </div>
