@@ -2,7 +2,7 @@
 
 import React, { use, useState } from "react";
 import Image from "next/image";
-import T3_Full from "../../public/assets/t3_cars_full_logo.png";
+import T3_Full from "../../public/assets/bikedost_logo.svg";
 import loader from "../../public/assets/loader.png";
 import { setCookie, deleteCookie } from "cookies-next";
 // import { loginUser, listSessions, logoutUser } from "@/lib/appwrite";
