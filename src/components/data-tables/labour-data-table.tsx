@@ -59,12 +59,12 @@ export function LabourDataTable<TData, TValue>({
     <div>
       <div className="flex items-center py-4 justify-between">
         <Input
-          placeholder="Filter Parts"
+          placeholder="Filter Labour"
           value={
-            (table.getColumn("partNumber")?.getFilterValue() as string) ?? ""
+            (table.getColumn("labourCode")?.getFilterValue() as string) ?? ""
           }
           onChange={(event) =>
-            table.getColumn("partNumber")?.setFilterValue(event.target.value)
+            table.getColumn("labourCode")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />

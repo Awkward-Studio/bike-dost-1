@@ -408,9 +408,9 @@ export default function AddCarCards({}: Props) {
         />
         {currentState == 0 && (
           <Button
-            color="#EF4444"
             disabled={!isCorrectCarNumber}
             onClick={handleContinueCarNumber}
+            className="bg-primary hover:bg-primary/75"
           >
             {isButtonLoading ? (
               <Image src={loader} width={50} height={50} alt="Logo" />
