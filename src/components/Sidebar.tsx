@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../../public/assets/Logomark.png";
+import logo from "../../public/assets/bikedost_bike_logo.svg";
 import loader from "../../public/assets/t3-loader.gif";
 // import { Home01Icon, Layers01Icon, Logout04Icon } from "hugeicons-react";
 import {
