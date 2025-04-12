@@ -157,7 +157,7 @@ export function JobCardsDataTable<TData, TValue>({
               href={`${pathname}/jobCard/${jobCard.$id}`}
               className={`flex justify-center items-center rounded-md w-fit px-3 py-2 border border-gray-200 ${
                 jobCard.jobCardStatus == 0 && jobCard.sendToPartsManager
-                  ? "bg-red-500 text-white hover:bg-red-400"
+                  ? "bg-primary text-white hover:bg-red-400"
                   : "bg-white text-gray-700 hover:bg-gray-200"
               }`}
             >
@@ -175,7 +175,7 @@ export function JobCardsDataTable<TData, TValue>({
               href={`${pathname}/jobCard/${jobCard.$id}`}
               className={`flex justify-center items-center rounded-md w-fit px-3 py-2 border border-gray-200 ${
                 jobCard.jobCardStatus == 1
-                  ? "bg-red-500 text-white hover:bg-red-400"
+                  ? "bg-primary text-white hover:bg-red-400"
                   : "bg-white text-gray-700 hover:bg-gray-200"
               }`}
             >
@@ -251,7 +251,7 @@ export function JobCardsDataTable<TData, TValue>({
             variant={"default"}
             size={"icon"}
             onClick={downloadCurrentJobCardsReport}
-            className={`px-8 py-2 bg-red-500 text-white hover:bg-red-400 hover:text-white `}
+            className={`px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white `}
           >
             <DownloadIcon />
           </Button>

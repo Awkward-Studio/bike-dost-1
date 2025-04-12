@@ -246,7 +246,7 @@ export default function jobCard({ params }: { params: { jobCardId: any } }) {
                           handleInsuranceInvoicePDF(value);
                         }}
                       >
-                        <SelectTrigger className="w-full p-2 border border-red-500 text-red-500 rounded-lg">
+                        <SelectTrigger className="w-full p-2 border border-primary text-primary rounded-lg">
                           <SelectValue placeholder="Download" />
                         </SelectTrigger>
                         <SelectContent className="w-full">
@@ -272,7 +272,7 @@ export default function jobCard({ params }: { params: { jobCardId: any } }) {
                           handleInvoicePDF(value);
                         }}
                       >
-                        <SelectTrigger className="w-full p-2 border border-red-500 text-red-500 rounded-lg">
+                        <SelectTrigger className="w-full p-2 border border-primary text-primary rounded-lg">
                           <SelectValue placeholder="Download" />
                         </SelectTrigger>
                         <SelectContent className="w-full">
@@ -297,7 +297,7 @@ export default function jobCard({ params }: { params: { jobCardId: any } }) {
               {currentJobCardStatus! < 5 && (
                 <Button
                   variant="outline"
-                  className="px-8 py-2 bg-red-500 text-white hover:bg-red-400 hover:text-white"
+                  className="px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white"
                   size="lg"
                   onClick={saveCurrentParts}
                 >

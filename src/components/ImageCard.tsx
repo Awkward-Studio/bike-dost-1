@@ -62,7 +62,7 @@ export default function ImageCard({ type, images, setImages }: any) {
 
   if (imageUploaded) {
     // return (
-    //   <div className="relative transition ease-in-out flex justify-around rounded-xl p-4 w-full h-32 border-2 border-red-500 text-red-500 overflow-hidden">
+    //   <div className="relative transition ease-in-out flex justify-around rounded-xl p-4 w-full h-32 border-2 border-primary text-primary overflow-hidden">
     //     <Image
     //       src={imageUrl}
     //       alt=""
@@ -77,7 +77,7 @@ export default function ImageCard({ type, images, setImages }: any) {
     //   </div>
     // );
     return (
-      <div className="relative transition ease-in-out flex justify-around rounded-xl p-4 w-full h-32 border-2 border-red-500 text-red-500 overflow-hidden">
+      <div className="relative transition ease-in-out flex justify-around rounded-xl p-4 w-full h-32 border-2 border-primary text-primary overflow-hidden">
         {imageUrl ? (
           <Image
             src={imageUrl} // Now a valid URL string
@@ -98,7 +98,7 @@ export default function ImageCard({ type, images, setImages }: any) {
   } else {
     return (
       <div
-        className={`transition ease-in-out flex justify-end rounded-xl p-1 w-full h-32 border-2 border-red-500 text-red-500`}
+        className={`transition ease-in-out flex justify-end rounded-xl p-1 w-full h-32 border-2 border-primary text-primary`}
       >
         {showLoading ? (
           <div className="flex flex-col text-sm h-full justify-center w-full items-center">

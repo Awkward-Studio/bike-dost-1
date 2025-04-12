@@ -227,7 +227,7 @@ export function CurrentLabourDataTable<TData, TValue>({
           <span className="font-bold"> I : </span>
           {Math.round(splitAmts.insuranceAmt * 100) / 100}
         </div>
-        <div className="text-red-500">
+        <div className="text-primary">
           <span className="font-bold"> C : </span>
           {Math.round(splitAmts.customerAmt * 100) / 100}
         </div>{" "}
@@ -432,7 +432,7 @@ export function CurrentLabourDataTable<TData, TValue>({
                   ) : (
                     <Button
                       variant="outline"
-                      className="border border-red-500 text-red-500"
+                      className="border border-primary text-primary"
                       onClick={() => setIsDiscount((prev) => true)}
                       disabled={disable}
                     >
@@ -465,7 +465,7 @@ export function CurrentLabourDataTable<TData, TValue>({
                   ) : (
                     <Button
                       variant="outline"
-                      className="border border-red-500 text-red-500"
+                      className="border border-primary text-primary"
                       onClick={() => {
                         if (isInsuranceDetails) {
                           setIsInsurance((prev) => true);
@@ -858,7 +858,7 @@ export function CurrentLabourDataTable<TData, TValue>({
               onClick={() => setIsAddingLabour((prev) => true)}
               disabled={disable}
             >
-              <div className="flex flex-row space-x-3 text-red-500 items-center">
+              <div className="flex flex-row space-x-3 text-primary items-center">
                 <div>+ Add Labour</div>
               </div>
             </Button>

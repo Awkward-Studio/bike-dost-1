@@ -301,6 +301,7 @@ export const loginUser = async (email: string, password: string) => {
 
 export const listAllUsers = async () => {
   const response = await functions.createExecution(config.fetchUsersFunctionId);
+  console.log("LISTING USERS", response);
   const obj = JSON.parse(response.responseBody);
   const users = obj.users.users;
   return users;

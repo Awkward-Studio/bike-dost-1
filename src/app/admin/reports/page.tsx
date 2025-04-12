@@ -423,7 +423,7 @@ export default function DownloadReports({}: Props) {
                     <div className="flex space-x-5 items-center">
                       <div>{timeline.value}</div>
                       {currentSelectedTimeline === timeline.key && (
-                        <div className="text-xs font-semibold text-red-500">
+                        <div className="text-xs font-semibold text-primary">
                           Current
                         </div>
                       )}

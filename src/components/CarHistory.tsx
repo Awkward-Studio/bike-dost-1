@@ -59,7 +59,7 @@ const CarHistory = (props: Props) => {
         <DialogTrigger asChild>
           <Button
             variant="outline"
-            className="flex justify-center items-center border bordre-red-500 text-red-500 hover:bg-red-500 hover:text-white space-x-2"
+            className="flex justify-center items-center border bordre-primary text-primary hover:bg-primary hover:text-white space-x-2"
           >
             <History />
             <div className="font-semibold">History</div>
@@ -77,17 +77,17 @@ const CarHistory = (props: Props) => {
             {carHistory.map((jobCard: JobCard, index: number) => (
               // <div
               //   key={index}
-              //   className="p-5 flex justify-between items-center rounded-xl border-2 border-red-500"
+              //   className="p-5 flex justify-between items-center rounded-xl border-2 border-primary"
               // >
               //   <div
               //     className={`font-semibold ${
-              //       jobCard.$id == props.currentJobCardId ? "text-red-500" : ""
+              //       jobCard.$id == props.currentJobCardId ? "text-primary" : ""
               //     }`}
               //   >
               //     {jobCard.$id}
               //   </div>
               //   {jobCard.$id == props.currentJobCardId ? (
-              //     <div className="text-white font-semibold text-sm py-2 px-4 bg-red-500 rounded-full">
+              //     <div className="text-white font-semibold text-sm py-2 px-4 bg-primary rounded-full">
               //       Current
               //     </div>
               //   ) : (
@@ -105,7 +105,7 @@ const CarHistory = (props: Props) => {
           <DialogFooter>
             {/* <Button
               type="submit"
-              className="bg-red-500"
+              className="bg-primary"
               onClick={saveInsuranceDetails}
             >
               Save

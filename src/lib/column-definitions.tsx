@@ -166,7 +166,7 @@ export const partColumns: ColumnDef<Part>[] = [
         case "parts":
           return (
             <div>
-              <Button className="bg-red-500" onClick={() => deletePart(part)}>
+              <Button className="bg-primary" onClick={() => deletePart(part)}>
                 Delete
               </Button>
             </div>
@@ -490,7 +490,7 @@ export const tempCarsColumns: ColumnDef<TempCar>[] = [
                         Change Advisor
                       </button>
                     ) : (
-                      <p className="text-red-500">
+                      <p className="text-primary">
                         Cannot change advisor for open Job Card.
                       </p>
                     )}
@@ -545,14 +545,14 @@ export const tempCarsColumns: ColumnDef<TempCar>[] = [
                     <DialogFooter>
                       <Button
                         type="submit"
-                        className="bg-red-500"
+                        className="bg-primary"
                         onClick={handleAdvisorChange}
                       >
                         Save
                       </Button>
                       <Button
                         type="submit"
-                        className="bg-red-500"
+                        className="bg-primary"
                         onClick={() => setSelectedPovCode(null)}
                       >
                         Cancel
@@ -578,7 +578,7 @@ export const tempCarsColumns: ColumnDef<TempCar>[] = [
         case "security":
           return (
             <div className="p-2">
-              <Button className="bg-red-500 text-white" onClick={handleCarExit}>
+              <Button className="bg-primary text-white" onClick={handleCarExit}>
                 CheckOut
               </Button>
             </div>
@@ -594,7 +594,7 @@ export const tempCarsColumns: ColumnDef<TempCar>[] = [
                 }`}
                 className={`flex justify-center items-center rounded-md w-fit px-3 py-2 border border-gray-200 ${
                   advisorInfo.open === false
-                    ? "bg-red-500 text-white hover:bg-red-400"
+                    ? "bg-primary text-white hover:bg-red-400"
                     : "bg-white text-gray-700 hover:bg-gray-200"
                 }`}
               >
@@ -803,7 +803,7 @@ export const changesHistoryColumns: ColumnDef<any>[] = [
 
       return (
         <Sheet>
-          <SheetTrigger className="bg-red-500 px-4 py-2 rounded-lg text-white hover:bg-red-400">
+          <SheetTrigger className="bg-primary px-4 py-2 rounded-lg text-white hover:bg-red-400">
             View Changes
           </SheetTrigger>
           <SheetContent className="h-fit" side={"bottom"}>
@@ -812,7 +812,7 @@ export const changesHistoryColumns: ColumnDef<any>[] = [
                 <div className={`text-${operation?.color} font-bold`}>
                   {operation?.value}
                 </div>
-                <div className="text-base px-4 py-2 rounded-full bg-red-500 text-white">
+                <div className="text-base px-4 py-2 rounded-full bg-primary text-white">
                   {identifier}
                 </div>
               </SheetTitle>

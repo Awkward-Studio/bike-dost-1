@@ -292,7 +292,7 @@ export function TempCarsDataTable<TData, TValue>({
                               )}
                               <Button
                                 variant="outline"
-                                className="px-8 py-2 bg-red-500 text-white hover:bg-red-400 hover:text-white"
+                                className="px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white"
                                 size="lg"
                                 onClick={() =>
                                   setDeletingJobCard(
@@ -321,7 +321,7 @@ export function TempCarsDataTable<TData, TValue>({
                                     <DialogFooter>
                                       <Button
                                         type="submit"
-                                        className="bg-red-500"
+                                        className="bg-primary"
                                         onClick={() =>
                                           deleteJobCard(deletingJobCard)
                                         }
@@ -394,7 +394,7 @@ export function TempCarsDataTable<TData, TValue>({
                                     <DialogFooter>
                                       <Button
                                         type="submit"
-                                        className="bg-red-500"
+                                        className="bg-primary"
                                         onClick={() =>
                                           deleteJobCard(deletingJobCard)
                                         }
@@ -431,7 +431,7 @@ export function TempCarsDataTable<TData, TValue>({
                                     <DialogFooter>
                                       <Button
                                         type="submit"
-                                        className="bg-red-500"
+                                        className="bg-primary"
                                         onClick={() =>
                                           reOpenJobCard(reopeningJobCard)
                                         }
@@ -453,7 +453,7 @@ export function TempCarsDataTable<TData, TValue>({
                             <>
                               <Button
                                 variant="outline"
-                                className="px-8 py-2 bg-red-500 text-white hover:bg-red-400 hover:text-white"
+                                className="px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white"
                                 size="lg"
                                 onClick={() =>
                                   setDeletingTempCar(
@@ -481,7 +481,7 @@ export function TempCarsDataTable<TData, TValue>({
                                     <DialogFooter>
                                       <Button
                                         type="submit"
-                                        className="bg-red-500"
+                                        className="bg-primary"
                                         onClick={() =>
                                           deleteTempCar(deletingTempCar)
                                         }

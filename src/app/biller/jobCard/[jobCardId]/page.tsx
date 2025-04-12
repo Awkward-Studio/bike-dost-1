@@ -727,7 +727,7 @@ export default function jobCard({
               <div>
                 <Button
                   variant="outline"
-                  className="px-8 py-2 border border-red-500 text-red-500"
+                  className="px-8 py-2 border border-primary text-primary"
                   size="lg"
                   onClick={() => generateJobCardPDF({ jobCard, car })}
                 >
@@ -743,7 +743,7 @@ export default function jobCard({
                           handleInsuranceInvoicePDF(value);
                         }}
                       >
-                        <SelectTrigger className="w-full p-2 border border-red-500 text-red-500 rounded-lg">
+                        <SelectTrigger className="w-full p-2 border border-primary text-primary rounded-lg">
                           <SelectValue placeholder="Download" />
                         </SelectTrigger>
                         <SelectContent className="w-full">
@@ -769,7 +769,7 @@ export default function jobCard({
                           handleInvoicePDF(value);
                         }}
                       >
-                        <SelectTrigger className="w-full p-2 border border-red-500 text-red-500 rounded-lg">
+                        <SelectTrigger className="w-full p-2 border border-primary text-primary rounded-lg">
                           <SelectValue placeholder="Download" />
                         </SelectTrigger>
                         <SelectContent className="w-full">
@@ -793,7 +793,7 @@ export default function jobCard({
               )}
 
               {disable && (
-                <span className="px-8 py-2 bg-red-500 text-white rounded-md">
+                <span className="px-8 py-2 bg-primary text-white rounded-md">
                   {jobCardStatusKey.find(
                     (item) => item.code === currentJobCardStatus
                   )?.description || "Status not found"}
@@ -805,7 +805,7 @@ export default function jobCard({
                   {currentJobCardStatus == 1 && (
                     <Button
                       variant="outline"
-                      className="px-8 py-2 bg-red-500 text-white hover:bg-red-400 hover:text-white"
+                      className="px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white"
                       size="lg"
                       onClick={() => saveCurrentPartsAndLbour()}
                     >
@@ -815,7 +815,7 @@ export default function jobCard({
                   {currentJobCardStatus == 2 && (
                     <Button
                       variant="outline"
-                      className={`px-8 py-2 bg-red-500 text-white hover:bg-red-400 hover:text-white ${
+                      className={`px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white ${
                         buttonLoading ? "opacity-50" : ""
                       }`}
                       size="lg"
@@ -839,7 +839,7 @@ export default function jobCard({
                   {currentJobCardStatus == 3 && (
                     <Button
                       variant="outline"
-                      className={`px-8 py-2 bg-red-500 text-white hover:bg-red-400 hover:text-white ${
+                      className={`px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white ${
                         buttonLoading ? "opacity-50" : ""
                       }`}
                       size="lg"
@@ -864,7 +864,7 @@ export default function jobCard({
                     user.email != "billermiraroad@t3cars.in" && (
                       <Button
                         variant="outline"
-                        className={`px-8 py-2 bg-red-500 text-white hover:bg-red-400 hover:text-white ${
+                        className={`px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white ${
                           buttonLoading ? "opacity-50" : ""
                         }`}
                         size="lg"
@@ -889,7 +889,7 @@ export default function jobCard({
                     user.email != "billermiraroad@t3cars.in" && (
                       <Button
                         variant="outline"
-                        className={`px-8 py-2 bg-red-500 text-white hover:bg-red-400 hover:text-white ${
+                        className={`px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white ${
                           buttonLoading ? "opacity-50" : ""
                         }`}
                         size="lg"
@@ -966,7 +966,7 @@ export default function jobCard({
                 <DialogTrigger asChild>
                   <Button
                     variant="outline"
-                    className="border bordre-red-500 text-red-500"
+                    className="border bordre-primary text-primary"
                     disabled={isDisabled}
                   >
                     {isInsuranceDetails
@@ -1014,7 +1014,7 @@ export default function jobCard({
                   <DialogFooter>
                     <Button
                       type="submit"
-                      className="bg-red-500"
+                      className="bg-primary"
                       onClick={saveInsuranceDetails}
                     >
                       Save
@@ -1028,7 +1028,7 @@ export default function jobCard({
                 <DialogTrigger asChild>
                   <Button
                     variant="outline"
-                    className="border bordre-red-500 text-red-500"
+                    className="border bordre-primary text-primary"
                     disabled={isDisabled}
                   >
                     Edit Customer Name
@@ -1057,7 +1057,7 @@ export default function jobCard({
                   <DialogFooter>
                     <Button
                       type="submit"
-                      className="bg-red-500"
+                      className="bg-primary"
                       onClick={saveCustomerName}
                     >
                       Save
@@ -1071,7 +1071,7 @@ export default function jobCard({
                 <DialogTrigger asChild>
                   <Button
                     variant="outline"
-                    className="border bordre-red-500 text-red-500"
+                    className="border bordre-primary text-primary"
                     disabled={isDisabled}
                   >
                     Edit Customer Address
@@ -1102,7 +1102,7 @@ export default function jobCard({
                   <DialogFooter>
                     <Button
                       type="submit"
-                      className="bg-red-500"
+                      className="bg-primary"
                       onClick={saveCustomerAddress}
                     >
                       Save
@@ -1116,7 +1116,7 @@ export default function jobCard({
                 <DialogTrigger asChild>
                   <Button
                     variant="outline"
-                    className="border bordre-red-500 text-red-500"
+                    className="border bordre-primary text-primary"
                     disabled={isDisabled}
                   >
                     Edit Customer PhoneNumber
@@ -1148,7 +1148,7 @@ export default function jobCard({
                   <DialogFooter>
                     <Button
                       type="submit"
-                      className="bg-red-500"
+                      className="bg-primary"
                       onClick={saveCustomerPhone}
                     >
                       Save
@@ -1162,7 +1162,7 @@ export default function jobCard({
                 <DialogTrigger asChild>
                   <Button
                     variant="outline"
-                    className="border bordre-red-500 text-red-500"
+                    className="border bordre-primary text-primary"
                     disabled={isDisabled}
                   >
                     Edit Customer Email
@@ -1194,7 +1194,7 @@ export default function jobCard({
                   <DialogFooter>
                     <Button
                       type="submit"
-                      className="bg-red-500"
+                      className="bg-primary"
                       onClick={saveCustomerEmail}
                     >
                       Save
@@ -1208,7 +1208,7 @@ export default function jobCard({
                 <DialogTrigger asChild>
                   <Button
                     variant="outline"
-                    className="border bordre-red-500 text-red-500"
+                    className="border bordre-primary text-primary"
                     disabled={isDisabled}
                   >
                     Edit Customer GST No.
@@ -1235,7 +1235,7 @@ export default function jobCard({
                   <DialogFooter>
                     <Button
                       type="submit"
-                      className="bg-red-500"
+                      className="bg-primary"
                       onClick={saveCustomerGST}
                     >
                       Save
@@ -1249,7 +1249,7 @@ export default function jobCard({
                 <DialogTrigger asChild>
                   <Button
                     variant="outline"
-                    className="border bordre-red-500 text-red-500"
+                    className="border bordre-primary text-primary"
                     disabled={isDisabled}
                   >
                     Observation and Remarks
@@ -1274,7 +1274,7 @@ export default function jobCard({
                   <DialogFooter>
                     <Button
                       type="submit"
-                      className="bg-red-500"
+                      className="bg-primary"
                       onClick={saveObservationRemarks}
                     >
                       Save
