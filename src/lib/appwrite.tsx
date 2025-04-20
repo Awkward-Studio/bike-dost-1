@@ -1606,6 +1606,44 @@ export const getJobCardsBetween = async (from: Date, to: Date) => {
   }
 };
 
+export const getJobCardsBefore = async (from: Date) => {
+  try {
+    const newFrom = from.toISOString();
+
+    let result = await databases.listDocuments(
+      config.databaseId,
+      config.jobCardsCollectionId,
+      [Query.limit(9999), Query.lessThanEqual("$createdAt", newFrom)]
+    );
+    return result;
+  } catch (error: any) {
+    console.log(error.message);
+    return null;
+  }
+};
+
+export const getCarsUpdatedBefore = async (from: Date) => {
+  try {
+    const newFrom = from.toISOString();
+
+    console.log("NEWFROM ", newFrom);
+
+    let result = await databases.listDocuments(
+      config.databaseId,
+      config.carsCollectionId,
+      [
+        Query.limit(9999),
+        Query.lessThanEqual("$updatedAt", newFrom),
+        // Query.orderAsc("$updatedAt"),
+      ]
+    );
+    return result;
+  } catch (error: any) {
+    console.log(error.message);
+    return null;
+  }
+};
+
 export const getInvoicesBetween = async (from: Date, to: Date) => {
   try {
     const newFrom = from.toISOString();

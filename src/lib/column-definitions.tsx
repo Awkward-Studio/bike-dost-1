@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 
 import {
+  callingStatuses,
   convertStringsToArray,
   convertToStrings,
   createDateExpandedObj,
@@ -20,6 +21,7 @@ import {
   CurrentLabour,
   Labour,
   TempCar,
+  Car,
 } from "@/lib/definitions";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -61,6 +63,7 @@ import {
   listAllUsers,
 } from "./appwrite";
 import { toast } from "sonner";
+import DisplayStatus from "@/components/CallingDisplayStatus";
 
 export const jobCardColumns: ColumnDef<JobCard>[] = [
   {
@@ -871,6 +874,56 @@ export const changesHistoryColumns: ColumnDef<any>[] = [
           </SheetContent>
         </Sheet>
       );
+    },
+  },
+];
+
+export const callingColumns: ColumnDef<Car>[] = [
+  {
+    accessorKey: "$id",
+    header: "Car Number",
+  },
+  {
+    accessorKey: "customerName",
+    header: "Customer Name",
+  },
+  {
+    accessorKey: "customerPhone",
+    header: "Customer Phone",
+  },
+  {
+    accessorKey: "carMake",
+    header: "Car Make",
+  },
+  {
+    accessorKey: "carModel",
+    header: "Car Model",
+  },
+  {
+    accessorKey: "carNumber",
+    header: "Car Number",
+  },
+  {
+    accessorKey: "callingStatus",
+    header: "Car Number",
+  },
+
+  {
+    accessorKey: "$updatedAt",
+    header: ({ column }) => {
+      return (
+        <Button
+          variant="ghost"
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+        >
+          Last Updated
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
+    cell: ({ row }) => {
+      const date = new Date(row.getValue("$updatedAt"));
+      return <div>{date.toLocaleString()}</div>;
     },
   },
 ];
