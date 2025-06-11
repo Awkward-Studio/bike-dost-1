@@ -39,6 +39,10 @@ export async function middleware(request: NextRequest) {
         
         redirectURL = "/admin";
         break;
+        case "caller":
+        
+        redirectURL = "/caller";
+        break;
 
       default:
         break;
@@ -65,6 +69,7 @@ export const config = {
     "/security/:path*",
     "/admin/:path*",
     "/service/:path*",
+    "/caller/:path*",
     "/",
   ],
 };

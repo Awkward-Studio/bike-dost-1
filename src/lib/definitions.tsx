@@ -15,6 +15,7 @@ export interface Car {
   customerEmail?: string;
   allJobCards: string[];
   carsTableId: string;
+  callingStatus?: number;
 }
 
 export interface Part {

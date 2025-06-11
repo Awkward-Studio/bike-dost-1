@@ -10,7 +10,13 @@ import {
   TaxObj,
   UserType,
 } from "./definitions";
-import jobCard from "@/app/biller/jobCard/[jobCardId]/page";
+
+export const callingStatuses = [
+  { code: 999, description: "All" },
+  { code: 0, description: "Not Contacted" },
+  { code: 1, description: "Converted" },
+  { code: 2, description: "Did Not Convert" },
+];
 
 export const jobCardStatusKey = [
   { code: 999, description: "All" },
