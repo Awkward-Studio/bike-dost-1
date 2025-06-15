@@ -70,7 +70,10 @@ export default function Service({}: Props) {
 
       let foundObjs;
 
-      if (parsedToken.labels[0] == "admin") {
+      if (
+        parsedToken.labels[0] == "admin" ||
+        parsedToken.labels[0] == "super"
+      ) {
         foundObjs = purposeOfVisits;
       } else {
         const advisorRoles: number[] = JSON.parse(

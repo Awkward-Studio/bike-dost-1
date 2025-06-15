@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/assets/bikedost_bike_logo.svg";
@@ -10,15 +10,21 @@ import {
   Car,
   CarFront,
   ClipboardList,
+  Cog,
   Download,
   HistoryIcon,
   House,
+  IdCard,
   Layers3,
   LogOut,
   Menu,
+  PhoneOutgoing,
   PlusIcon,
+  ReceiptText,
+  ShieldCheck,
   UmbrellaIcon,
   UserRoundCog,
+  Wrench,
 } from "lucide-react";
 
 import {
@@ -40,13 +46,39 @@ import {
 
 import { useRouter } from "next/navigation";
 import { logoutUser } from "@/lib/appwrite";
-import { deleteCookie } from "cookies-next";
+import { deleteCookie, getCookie } from "cookies-next";
 import { Button } from "./ui/button";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 export default function Sidebar({ home }: any) {
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [currentHome, setCurrentHome] = useState(home);
+
+  const [isSuperUser, setIsSuperUser] = useState(false);
 
   const router = useRouter();
+
+  useEffect(() => {
+    const getUser = () => {
+      const token = getCookie("user");
+
+      const parsedToken = JSON.parse(String(token));
+      const userAccess = parsedToken.labels[0];
+      console.log("PARSED", userAccess);
+      //   setName(parsedToken.name);
+      if (userAccess == "super") {
+        setIsSuperUser(true);
+      }
+    };
+
+    getUser();
+  }, []);
 
   console.log("THIS IS THE HOME - ", home);
 
@@ -62,6 +94,9 @@ export default function Sidebar({ home }: any) {
     router.push(path);
   };
 
+  const handleSuperUserNavigation = (value: string) => {
+    router.push(`/${value}`);
+  };
   return (
     <>
       <div className="sm:flex lg:hidden z-10 absolute top-5 right-5">
@@ -203,16 +238,82 @@ export default function Sidebar({ home }: any) {
         </Drawer>
       </div>
       <div className="hidden lg:flex sticky top-0 shadow-xl p-6 flex-col h-dvh bg-gray-50 min-w-[80px] items-center py-8">
-        <div className="mb-10">
+        <div
+          className="mb-10 cursor-pointer"
+          onClick={() => {
+            {
+              if (isSuperUser) {
+                router.push("/super");
+              } else {
+                router.push(home);
+              }
+            }
+          }}
+        >
           <Image src={logo} width={50} height={50} alt="Logo" />
         </div>
+        {isSuperUser && (
+          <Select
+            onValueChange={(userAccess) =>
+              handleSuperUserNavigation(userAccess)
+            }
+          >
+            <SelectTrigger className="w-full mb-10">
+              <SelectValue placeholder="Role" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem key={"Security"} value={"security"}>
+                <div className="flex space-x-5 items-center justify-between">
+                  <div>Security</div>
+                  <IdCard />
+                </div>
+              </SelectItem>
+              <SelectItem key={"Service"} value={"service"}>
+                <div className="flex space-x-5 items-center justify-between">
+                  <div>Service</div>
+                  <Wrench />
+                </div>
+              </SelectItem>
+              <SelectItem key={"Parts"} value={"parts"}>
+                <div className="flex space-x-5 items-center justify-between">
+                  <div>Parts</div>
+                  <Cog />
+                </div>
+              </SelectItem>
+              <SelectItem key={"Biller"} value={"biller"}>
+                <div className="flex space-x-5 items-center justify-between">
+                  <div>Biller</div>
+                  <ReceiptText />
+                </div>
+              </SelectItem>
+              <SelectItem key={"Admin"} value={"admin"}>
+                <div className="flex space-x-5 items-center justify-between">
+                  <div>Admin</div>
+                  <ShieldCheck />
+                </div>
+              </SelectItem>
+              <SelectItem key={"Caller"} value={"caller"}>
+                <div className="flex space-x-5 items-center justify-between">
+                  <div>Caller</div>
+                  <PhoneOutgoing />
+                </div>
+              </SelectItem>
+            </SelectContent>
+          </Select>
+        )}
         <div className="flex flex-col h-full justify-between">
           <div className="flex flex-col space-y-5">
             <HoverCard>
               <HoverCardTrigger asChild>
                 <div
                   className="border-2 rounded-md shadow-md p-3 cursor-pointer"
-                  onClick={() => handleNavigation(home)}
+                  onClick={() => {
+                    if (isSuperUser) {
+                      handleNavigation("/super");
+                    } else {
+                      handleNavigation(home);
+                    }
+                  }}
                 >
                   <House />
                 </div>
@@ -222,12 +323,14 @@ export default function Sidebar({ home }: any) {
               </HoverCardContent>
             </HoverCard>
 
-            {(home == "/parts" || home == "/biller") && (
+            {(currentHome == "/parts" || currentHome == "/biller") && (
               <HoverCard>
                 <HoverCardTrigger asChild>
                   <div
                     className="border-2 rounded-md shadow-md p-3 cursor-pointer"
-                    onClick={() => handleNavigation(`${home}/parts-inventory`)}
+                    onClick={() =>
+                      handleNavigation(`${currentHome}/parts-inventory`)
+                    }
                   >
                     <ClipboardList />
                   </div>
@@ -238,14 +341,14 @@ export default function Sidebar({ home }: any) {
               </HoverCard>
             )}
 
-            {home == "/admin" && (
+            {currentHome == "/admin" && (
               <>
                 <HoverCard>
                   <HoverCardTrigger asChild>
                     <div
                       className="border-2 rounded-md shadow-md p-3 cursor-pointer"
                       onClick={() =>
-                        handleNavigation(`${home}/manage-jobcards`)
+                        handleNavigation(`${currentHome}/manage-jobcards`)
                       }
                     >
                       <ClipboardList />
@@ -260,7 +363,7 @@ export default function Sidebar({ home }: any) {
                   <HoverCardTrigger asChild>
                     <div
                       className="border-2 rounded-md shadow-md p-3 cursor-pointer"
-                      onClick={() => handleNavigation(`${home}/reports`)}
+                      onClick={() => handleNavigation(`${currentHome}/reports`)}
                     >
                       <Download />
                     </div>
@@ -273,7 +376,7 @@ export default function Sidebar({ home }: any) {
                   <HoverCardTrigger asChild>
                     <div
                       className="border-2 rounded-md shadow-md p-3 cursor-pointer"
-                      onClick={() => handleNavigation(`${home}/add-car`)}
+                      onClick={() => handleNavigation(`${currentHome}/add-car`)}
                     >
                       <CarFront />
                     </div>
@@ -287,7 +390,7 @@ export default function Sidebar({ home }: any) {
                     <div
                       className="border-2 rounded-md shadow-md p-3 cursor-pointer"
                       onClick={() =>
-                        handleNavigation(`${home}/add-insuranceProvider`)
+                        handleNavigation(`${currentHome}/add-insuranceProvider`)
                       }
                     >
                       <UmbrellaIcon />
@@ -301,7 +404,9 @@ export default function Sidebar({ home }: any) {
                   <HoverCardTrigger asChild>
                     <div
                       className="border-2 rounded-md shadow-md p-3 cursor-pointer"
-                      onClick={() => handleNavigation(`${home}/viewChanges`)}
+                      onClick={() =>
+                        handleNavigation(`${currentHome}/viewChanges`)
+                      }
                     >
                       <HistoryIcon />
                     </div>
@@ -313,12 +418,14 @@ export default function Sidebar({ home }: any) {
               </>
             )}
 
-            {home == "/biller" && (
+            {currentHome == "/biller" && (
               <HoverCard>
                 <HoverCardTrigger asChild>
                   <div
                     className="border-2 rounded-md shadow-md p-3 cursor-pointer"
-                    onClick={() => handleNavigation(`${home}/labour-inventory`)}
+                    onClick={() =>
+                      handleNavigation(`${currentHome}/labour-inventory`)
+                    }
                   >
                     <UserRoundCog />
                   </div>
@@ -328,12 +435,12 @@ export default function Sidebar({ home }: any) {
                 </HoverCardContent>
               </HoverCard>
             )}
-            {home == "/security" && (
+            {currentHome == "/security" && (
               <HoverCard>
                 <HoverCardTrigger asChild>
                   <div
                     className="border-2 rounded-md shadow-md p-3 cursor-pointer"
-                    onClick={() => handleNavigation(`${home}/addCar`)}
+                    onClick={() => handleNavigation(`${currentHome}/addCar`)}
                   >
                     <Car />
                   </div>
@@ -343,12 +450,12 @@ export default function Sidebar({ home }: any) {
                 </HoverCardContent>
               </HoverCard>
             )}
-            {home == "/parts" && (
+            {currentHome == "/parts" && (
               <HoverCard>
                 <HoverCardTrigger asChild>
                   <div
                     className="border-2 rounded-md shadow-md p-3 cursor-pointer"
-                    onClick={() => handleNavigation(`${home}/addParts`)}
+                    onClick={() => handleNavigation(`${currentHome}/addParts`)}
                   >
                     <PlusIcon />
                   </div>
@@ -358,12 +465,12 @@ export default function Sidebar({ home }: any) {
                 </HoverCardContent>
               </HoverCard>
             )}
-            {home == "/biller" && (
+            {currentHome == "/biller" && (
               <HoverCard>
                 <HoverCardTrigger asChild>
                   <div
                     className="border-2 rounded-md shadow-md p-3 cursor-pointer"
-                    onClick={() => handleNavigation(`${home}/addLabour`)}
+                    onClick={() => handleNavigation(`${currentHome}/addLabour`)}
                   >
                     <PlusIcon />
                   </div>
