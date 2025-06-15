@@ -40,6 +40,9 @@ function Login({}: Props) {
         let redirectURL = "/";
 
         switch (userAccess) {
+          case "super":
+            redirectURL = "/super";
+            break;
           case "parts":
             redirectURL = "/parts";
             break;
