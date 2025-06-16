@@ -107,7 +107,7 @@ const manageJobCardsAdmin = ({}: Props) => {
       const parsedToken = JSON.parse(String(token));
       console.log("TEMP CARS - ", allTempCars);
 
-      if (parsedToken.labels[0] == "admin") {
+      if (parsedToken.labels[0] == "admin" || "super") {
         setTempCars(allTempCars.documents);
       }
     };

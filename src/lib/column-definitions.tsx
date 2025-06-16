@@ -606,6 +606,142 @@ export const tempCarsColumns: ColumnDef<TempCar>[] = [
             </div>
           );
 
+        case "super":
+          if (pathname.includes("/service")) {
+            return (
+              <div className="flex justify-center items-center">
+                <Link
+                  href={`${
+                    advisorInfo.open === false
+                      ? `${pathname}/createJobCard/${tempCar.$id}`
+                      : `${pathname}/viewJobCard/${tempCar.jobCardId}`
+                  }`}
+                  className={`flex justify-center items-center rounded-md w-fit px-3 py-2 border border-gray-200 ${
+                    advisorInfo.open === false
+                      ? "bg-primary text-white hover:bg-red-400"
+                      : "bg-white text-gray-700 hover:bg-gray-200"
+                  }`}
+                >
+                  {advisorInfo.open === false ? "Create" : "View"}
+                </Link>
+              </div>
+            );
+          } else if (pathname.includes("/admin")) {
+            return (
+              <div>
+                {purposeOfVisitAndAdvisors.map((pov: any, index: number) => (
+                  <div className="flex items-center space-x-8" key={index}>
+                    <div key={pov.purposeOfVisitCode} className="mb-4">
+                      <h3 className="text-lg font-semibold">
+                        {pov.description}
+                      </h3>
+                      {pov.open === false ? (
+                        <button
+                          onClick={() => {
+                            console.log(
+                              "Clicked Purpose of Visit Code:",
+                              pov.purposeOfVisitCode
+                            );
+                            console.log(
+                              "Current Advisor Email:",
+                              pov.advisorEmail
+                            );
+                            setSelectedPovCode(pov.purposeOfVisitCode);
+                            setSelectedAdvisor(pov.advisorEmail);
+                          }}
+                          className="text-blue-500 underline"
+                        >
+                          Change Advisor
+                        </button>
+                      ) : (
+                        <p className="text-primary">
+                          Cannot change advisor for open Job Card.
+                        </p>
+                      )}
+                    </div>
+                    <div>
+                      {pov.open && (
+                        <Link
+                          href={`${pathname.slice(0, -15)}/viewJobCard/${
+                            tempCar.jobCardId
+                          }`}
+                          className="flex justify-center items-center rounded-md w-fit px-3 py-2 border border-gray-200 bg-white text-gray-700 hover:bg-gray-200"
+                        >
+                          View JobCard
+                        </Link>
+                      )}
+                    </div>
+                  </div>
+                ))}
+
+                {selectedPovCode !== null && (
+                  <Dialog
+                    open={selectedPovCode !== null} // Explicitly check for null
+                    onOpenChange={() => setSelectedPovCode(null)}
+                  >
+                    <DialogContent className="sm:max-w-[425px]">
+                      <DialogHeader>
+                        <DialogTitle>Change Advisor</DialogTitle>
+                        <DialogDescription>
+                          Select a new advisor for this purpose of visit.
+                        </DialogDescription>
+                      </DialogHeader>
+                      <div className="grid gap-4 py-4">
+                        <Select
+                          value={selectedAdvisor}
+                          onValueChange={(value) => setSelectedAdvisor(value)}
+                        >
+                          <SelectTrigger className="col-span-3">
+                            <SelectValue placeholder="Select an advisor" />
+                          </SelectTrigger>
+                          <SelectContent>
+                            {allAdvisors[selectedPovCode]?.map((advisor) => (
+                              <SelectItem
+                                key={advisor.email}
+                                value={advisor.email}
+                              >
+                                {advisor.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                      </div>
+                      <DialogFooter>
+                        <Button
+                          type="submit"
+                          className="bg-primary"
+                          onClick={handleAdvisorChange}
+                        >
+                          Save
+                        </Button>
+                        <Button
+                          type="submit"
+                          className="bg-primary"
+                          onClick={() => setSelectedPovCode(null)}
+                        >
+                          Cancel
+                        </Button>
+                      </DialogFooter>
+                    </DialogContent>
+                  </Dialog>
+                )}
+
+                {/* Add "Open Job Card" button */}
+                {tempCarStatus?.isValid && (
+                  <div>
+                    <button
+                      onClick={handleOpenJobCard}
+                      className="text-blue-500 underline"
+                    >
+                      Open <span className="font-bold">Second (+1)</span> Job
+                      Card
+                    </button>
+                  </div>
+                )}
+              </div>
+            );
+          }
+
         default:
           break;
       }

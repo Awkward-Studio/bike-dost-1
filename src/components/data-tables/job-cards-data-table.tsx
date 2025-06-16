@@ -184,6 +184,22 @@ export function JobCardsDataTable<TData, TValue>({
           </div>
         );
 
+      case "super":
+        return (
+          <div className="flex justify-center items-center">
+            <Link
+              href={`${pathname}/jobCard/${jobCard.$id}`}
+              className={`flex justify-center items-center rounded-md w-fit px-3 py-2 border border-gray-200 ${
+                jobCard.jobCardStatus == 1
+                  ? "bg-primary text-white hover:bg-red-400"
+                  : "bg-white text-gray-700 hover:bg-gray-200"
+              }`}
+            >
+              {jobCard.jobCardStatus == 1 ? "Add" : "Edit"}
+            </Link>
+          </div>
+        );
+
       case "admin":
         return (
           <div className="flex justify-center items-center">
