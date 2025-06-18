@@ -94,7 +94,7 @@ let apiUrl: string;
 if (useDev) {
   apiUrl = "http://localhost:3000";
 } else {
-  apiUrl = "https://t3-next-dev.vercel.app";
+  apiUrl = "https://bike-dost-1.vercel.app";
 }
 
 export default function jobCard({
