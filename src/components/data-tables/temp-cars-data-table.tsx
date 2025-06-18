@@ -267,43 +267,44 @@ export function TempCarsDataTable<TData, TValue>({
                       )}
                     </TableCell>
                   ))}
-                  {userAccess === "admin" && (
-                    <>
-                      <TableCell>
-                        <div className="flex space-x-4 justify-center">
-                          {(row.original as TempCar).allJobCardIds.length >
-                          0 ? (
-                            <>
-                              {(row.original as TempCar).carStatus === 2 && (
-                                <>
-                                  <Button
-                                    variant="outline"
-                                    className="px-8 py-2  hover:bg-red-400 hover:text-white"
-                                    size="lg"
-                                    onClick={() =>
-                                      setReopeningJobCard(
-                                        JSON.stringify(row.original)
-                                      )
-                                    }
-                                  >
-                                    Reopen JobCard
-                                  </Button>
-                                </>
-                              )}
-                              <Button
-                                variant="outline"
-                                className="px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white"
-                                size="lg"
-                                onClick={() =>
-                                  setDeletingJobCard(
-                                    JSON.stringify(row.original)
-                                  )
-                                }
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
+                  {userAccess === "admin" ||
+                    (userAccess === "super" && (
+                      <>
+                        <TableCell>
+                          <div className="flex space-x-4 justify-center">
+                            {(row.original as TempCar).allJobCardIds.length >
+                            0 ? (
+                              <>
+                                {(row.original as TempCar).carStatus === 2 && (
+                                  <>
+                                    <Button
+                                      variant="outline"
+                                      className="px-8 py-2  hover:bg-red-400 hover:text-white"
+                                      size="lg"
+                                      onClick={() =>
+                                        setReopeningJobCard(
+                                          JSON.stringify(row.original)
+                                        )
+                                      }
+                                    >
+                                      Reopen JobCard
+                                    </Button>
+                                  </>
+                                )}
+                                <Button
+                                  variant="outline"
+                                  className="px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white"
+                                  size="lg"
+                                  onClick={() =>
+                                    setDeletingJobCard(
+                                      JSON.stringify(row.original)
+                                    )
+                                  }
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
 
-                              {/* {deletingJobCard && (
+                                {/* {deletingJobCard && (
                                 <Dialog
                                   open={deletingJobCard != ""}
                                   onOpenChange={() => setDeletingJobCard("")}
@@ -338,172 +339,176 @@ export function TempCarsDataTable<TData, TValue>({
                                   </DialogContent>
                                 </Dialog>
                               )} */}
-                              {deletingJobCard && (
-                                <Dialog
-                                  open={deletingJobCard !== ""}
-                                  onOpenChange={() => setDeletingJobCard("")}
-                                >
-                                  <DialogContent>
-                                    <DialogHeader>
-                                      <DialogTitle>
-                                        Select JobCard to Delete
-                                      </DialogTitle>
-                                      <DialogDescription>
-                                        This action cannot be undone. Please
-                                        select the job card you want to delete
-                                        and provide a reason.
-                                      </DialogDescription>
-                                    </DialogHeader>
+                                {deletingJobCard && (
+                                  <Dialog
+                                    open={deletingJobCard !== ""}
+                                    onOpenChange={() => setDeletingJobCard("")}
+                                  >
+                                    <DialogContent>
+                                      <DialogHeader>
+                                        <DialogTitle>
+                                          Select JobCard to Delete
+                                        </DialogTitle>
+                                        <DialogDescription>
+                                          This action cannot be undone. Please
+                                          select the job card you want to delete
+                                          and provide a reason.
+                                        </DialogDescription>
+                                      </DialogHeader>
 
-                                    {isLoadingPovs ? (
-                                      // Show loading message while fetching purposes of visit
-                                      <p>Loading purposes of visit...</p>
-                                    ) : (
-                                      // Render radio buttons once purposes of visit are fetched
-                                      <RadioGroup
-                                        value={selectedJobCardId}
-                                        onValueChange={(value) =>
-                                          setSelectedJobCardId(value)
-                                        }
-                                        className="space-y-2"
-                                      >
-                                        {(
-                                          JSON.parse(deletingJobCard) as TempCar
-                                        ).allJobCardIds.map((jobCardId) => (
-                                          <RadioGroupItem
-                                            key={jobCardId}
-                                            id={`radio-${jobCardId}`}
-                                            value={jobCardId}
-                                          >
-                                            {jobCardPovs[jobCardId]
-                                              ? jobCardPovs[jobCardId]
-                                              : `JobCard: ${jobCardId}`}
-                                          </RadioGroupItem>
-                                        ))}
-                                      </RadioGroup>
-                                    )}
+                                      {isLoadingPovs ? (
+                                        // Show loading message while fetching purposes of visit
+                                        <p>Loading purposes of visit...</p>
+                                      ) : (
+                                        // Render radio buttons once purposes of visit are fetched
+                                        <RadioGroup
+                                          value={selectedJobCardId}
+                                          onValueChange={(value) =>
+                                            setSelectedJobCardId(value)
+                                          }
+                                          className="space-y-2"
+                                        >
+                                          {(
+                                            JSON.parse(
+                                              deletingJobCard
+                                            ) as TempCar
+                                          ).allJobCardIds.map((jobCardId) => (
+                                            <RadioGroupItem
+                                              key={jobCardId}
+                                              id={`radio-${jobCardId}`}
+                                              value={jobCardId}
+                                            >
+                                              {jobCardPovs[jobCardId]
+                                                ? jobCardPovs[jobCardId]
+                                                : `JobCard: ${jobCardId}`}
+                                            </RadioGroupItem>
+                                          ))}
+                                        </RadioGroup>
+                                      )}
 
-                                    <Input
-                                      placeholder="Reason for deletion"
-                                      value={reason}
-                                      onChange={(e) =>
-                                        setReason(e.target.value)
-                                      }
-                                      className="mt-4"
-                                    />
-                                    <DialogFooter>
-                                      <Button
-                                        type="submit"
-                                        className="bg-primary"
-                                        onClick={() =>
-                                          deleteJobCard(deletingJobCard)
+                                      <Input
+                                        placeholder="Reason for deletion"
+                                        value={reason}
+                                        onChange={(e) =>
+                                          setReason(e.target.value)
                                         }
-                                        disabled={!selectedJobCardId || !reason}
-                                      >
-                                        Delete
-                                      </Button>
-                                      <Button
-                                        type="submit"
-                                        onClick={() => setDeletingJobCard("")}
-                                      >
-                                        Cancel
-                                      </Button>
-                                    </DialogFooter>
-                                  </DialogContent>
-                                </Dialog>
-                              )}
+                                        className="mt-4"
+                                      />
+                                      <DialogFooter>
+                                        <Button
+                                          type="submit"
+                                          className="bg-primary"
+                                          onClick={() =>
+                                            deleteJobCard(deletingJobCard)
+                                          }
+                                          disabled={
+                                            !selectedJobCardId || !reason
+                                          }
+                                        >
+                                          Delete
+                                        </Button>
+                                        <Button
+                                          type="submit"
+                                          onClick={() => setDeletingJobCard("")}
+                                        >
+                                          Cancel
+                                        </Button>
+                                      </DialogFooter>
+                                    </DialogContent>
+                                  </Dialog>
+                                )}
 
-                              {reopeningJobCard && (
-                                <Dialog
-                                  open={reopeningJobCard != ""}
-                                  onOpenChange={() => setReopeningJobCard("")}
+                                {reopeningJobCard && (
+                                  <Dialog
+                                    open={reopeningJobCard != ""}
+                                    onOpenChange={() => setReopeningJobCard("")}
+                                  >
+                                    <DialogContent>
+                                      <DialogHeader>
+                                        <DialogTitle>
+                                          Are you absolutely sure?
+                                        </DialogTitle>
+                                        <DialogDescription>
+                                          This action cannot be undone. This
+                                          will Re - Open the job card.
+                                        </DialogDescription>
+                                      </DialogHeader>
+                                      <DialogFooter>
+                                        <Button
+                                          type="submit"
+                                          className="bg-primary"
+                                          onClick={() =>
+                                            reOpenJobCard(reopeningJobCard)
+                                          }
+                                        >
+                                          Re Open
+                                        </Button>
+                                        <Button
+                                          type="submit"
+                                          onClick={() => setDeletingJobCard("")}
+                                        >
+                                          Cancel
+                                        </Button>
+                                      </DialogFooter>
+                                    </DialogContent>
+                                  </Dialog>
+                                )}
+                              </>
+                            ) : (
+                              <>
+                                <Button
+                                  variant="outline"
+                                  className="px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white"
+                                  size="lg"
+                                  onClick={() =>
+                                    setDeletingTempCar(
+                                      JSON.stringify(row.original)
+                                    )
+                                  }
                                 >
-                                  <DialogContent>
-                                    <DialogHeader>
-                                      <DialogTitle>
-                                        Are you absolutely sure?
-                                      </DialogTitle>
-                                      <DialogDescription>
-                                        This action cannot be undone. This will
-                                        Re - Open the job card.
-                                      </DialogDescription>
-                                    </DialogHeader>
-                                    <DialogFooter>
-                                      <Button
-                                        type="submit"
-                                        className="bg-primary"
-                                        onClick={() =>
-                                          reOpenJobCard(reopeningJobCard)
-                                        }
-                                      >
-                                        Re Open
-                                      </Button>
-                                      <Button
-                                        type="submit"
-                                        onClick={() => setDeletingJobCard("")}
-                                      >
-                                        Cancel
-                                      </Button>
-                                    </DialogFooter>
-                                  </DialogContent>
-                                </Dialog>
-                              )}
-                            </>
-                          ) : (
-                            <>
-                              <Button
-                                variant="outline"
-                                className="px-8 py-2 bg-primary text-white hover:bg-red-400 hover:text-white"
-                                size="lg"
-                                onClick={() =>
-                                  setDeletingTempCar(
-                                    JSON.stringify(row.original)
-                                  )
-                                }
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                              {deletingTempCar && (
-                                <Dialog
-                                  open={deletingTempCar != ""}
-                                  onOpenChange={() => setDeletingTempCar("")}
-                                >
-                                  <DialogContent>
-                                    <DialogHeader>
-                                      <DialogTitle>
-                                        Are you absolutely sure?
-                                      </DialogTitle>
-                                      <DialogDescription>
-                                        This action cannot be undone. This will
-                                        permanently delete the temp car.
-                                      </DialogDescription>
-                                    </DialogHeader>
-                                    <DialogFooter>
-                                      <Button
-                                        type="submit"
-                                        className="bg-primary"
-                                        onClick={() =>
-                                          deleteTempCar(deletingTempCar)
-                                        }
-                                      >
-                                        Delete
-                                      </Button>
-                                      <Button
-                                        type="submit"
-                                        onClick={() => setDeletingTempCar("")}
-                                      >
-                                        Cancel
-                                      </Button>
-                                    </DialogFooter>
-                                  </DialogContent>
-                                </Dialog>
-                              )}
-                            </>
-                          )}
-                        </div>
-                      </TableCell>
-                    </>
-                  )}
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                                {deletingTempCar && (
+                                  <Dialog
+                                    open={deletingTempCar != ""}
+                                    onOpenChange={() => setDeletingTempCar("")}
+                                  >
+                                    <DialogContent>
+                                      <DialogHeader>
+                                        <DialogTitle>
+                                          Are you absolutely sure?
+                                        </DialogTitle>
+                                        <DialogDescription>
+                                          This action cannot be undone. This
+                                          will permanently delete the temp car.
+                                        </DialogDescription>
+                                      </DialogHeader>
+                                      <DialogFooter>
+                                        <Button
+                                          type="submit"
+                                          className="bg-primary"
+                                          onClick={() =>
+                                            deleteTempCar(deletingTempCar)
+                                          }
+                                        >
+                                          Delete
+                                        </Button>
+                                        <Button
+                                          type="submit"
+                                          onClick={() => setDeletingTempCar("")}
+                                        >
+                                          Cancel
+                                        </Button>
+                                      </DialogFooter>
+                                    </DialogContent>
+                                  </Dialog>
+                                )}
+                              </>
+                            )}
+                          </div>
+                        </TableCell>
+                      </>
+                    ))}
                 </TableRow>
               ))
             ) : (

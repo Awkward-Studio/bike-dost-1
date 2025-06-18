@@ -608,24 +608,59 @@ export const tempCarsColumns: ColumnDef<TempCar>[] = [
 
         case "super":
           if (pathname.includes("/service")) {
-            return (
-              <div className="flex justify-center items-center">
-                <Link
-                  href={`${
-                    advisorInfo.open === false
-                      ? `${pathname}/createJobCard/${tempCar.$id}`
-                      : `${pathname}/viewJobCard/${tempCar.jobCardId}`
-                  }`}
-                  className={`flex justify-center items-center rounded-md w-fit px-3 py-2 border border-gray-200 ${
-                    advisorInfo.open === false
-                      ? "bg-primary text-white hover:bg-red-400"
-                      : "bg-white text-gray-700 hover:bg-gray-200"
-                  }`}
-                >
-                  {advisorInfo.open === false ? "Create" : "View"}
-                </Link>
-              </div>
-            );
+            if (purposeOfVisitAndAdvisors.length > 1) {
+              console.log("CHECK YAHAN -", tempCar.carNumber);
+              return (
+                <div>
+                  {purposeOfVisitAndAdvisors.map((pov: any, index: number) => (
+                    <div className="flex items-center space-x-8" key={index}>
+                      <div key={pov.purposeOfVisitCode} className="mb-4">
+                        <h3 className="text-md font-semibold">
+                          {pov.description}{" "}
+                          <span className="text-sm text-gray-600">
+                            ({pov.advisorEmail})
+                          </span>
+                        </h3>
+                        {pov.open === false ? (
+                          <Link
+                            href={`${pathname}/createJobCard/${tempCar.$id}`}
+                            className={`flex justify-center items-center rounded-md w-fit px-3 py-2 border border-gray-200 bg-primary text-white hover:bg-red-400`}
+                          >
+                            Create
+                          </Link>
+                        ) : (
+                          <Link
+                            href={`${pathname}/viewJobCard/${tempCar.jobCardId}`}
+                            className={`flex justify-center items-center rounded-md w-fit px-3 py-2 border border-gray-200 bg-white text-gray-700 hover:bg-gray-200`}
+                          >
+                            View
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              );
+            } else {
+              return (
+                <div className="flex justify-center items-center">
+                  <Link
+                    href={`${
+                      advisorInfo.open === false
+                        ? `${pathname}/createJobCard/${tempCar.$id}`
+                        : `${pathname}/viewJobCard/${tempCar.jobCardId}`
+                    }`}
+                    className={`flex justify-center items-center rounded-md w-fit px-3 py-2 border border-gray-200 ${
+                      advisorInfo.open === false
+                        ? "bg-primary text-white hover:bg-red-400"
+                        : "bg-white text-gray-700 hover:bg-gray-200"
+                    }`}
+                  >
+                    {advisorInfo.open === false ? "Create" : "View"}
+                  </Link>
+                </div>
+              );
+            }
           } else if (pathname.includes("/admin")) {
             return (
               <div>
@@ -633,7 +668,10 @@ export const tempCarsColumns: ColumnDef<TempCar>[] = [
                   <div className="flex items-center space-x-8" key={index}>
                     <div key={pov.purposeOfVisitCode} className="mb-4">
                       <h3 className="text-lg font-semibold">
-                        {pov.description}
+                        {pov.description}{" "}
+                        <span className="text-sm text-gray-600">
+                          ({pov.advisorEmail})
+                        </span>
                       </h3>
                       {pov.open === false ? (
                         <button
@@ -731,7 +769,7 @@ export const tempCarsColumns: ColumnDef<TempCar>[] = [
                   <div>
                     <button
                       onClick={handleOpenJobCard}
-                      className="text-blue-500 underline"
+                      className="text-blue-500 underline cursor-pointer"
                     >
                       Open <span className="font-bold">Second (+1)</span> Job
                       Card
