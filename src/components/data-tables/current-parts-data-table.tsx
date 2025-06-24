@@ -373,76 +373,77 @@ export function CurrentPartsDataTable<TData, TValue>({
       <div className="flex flex-col rounded-md border">
         <div className="flex flex-row justify-between items-center">
           <div className="font-semibold text-lg p-5">Parts</div>
-          {getUserAccess(user) == "biller" && (
-            <div className="flex flex-row space-x-5 mr-5 items-center">
-              {currentJobCardStatus == 2 && (
-                <>
-                  {isDiscount ? (
-                    <div className="flex justify-around w-fit items-center space-x-3">
-                      <Input
-                        placeholder="Discount on All Parts"
-                        type="number"
-                        onChange={(event) =>
-                          handleAllDiscount(Number(event.target.value))
-                        }
-                        className="max-w-sm"
+          {getUserAccess(user) == "biller" ||
+            (getUserAccess(user) == "super" && (
+              <div className="flex flex-row space-x-5 mr-5 items-center">
+                {currentJobCardStatus == 2 && (
+                  <>
+                    {isDiscount ? (
+                      <div className="flex justify-around w-fit items-center space-x-3">
+                        <Input
+                          placeholder="Discount on All Parts"
+                          type="number"
+                          onChange={(event) =>
+                            handleAllDiscount(Number(event.target.value))
+                          }
+                          className="max-w-sm"
+                          disabled={disable}
+                        />
+                        <X onClick={removeAllDiscount} />
+                      </div>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        className="border border-primary text-primary"
+                        onClick={() => setIsDiscount((prev) => true)}
                         disabled={disable}
-                      />
-                      <X onClick={removeAllDiscount} />
-                    </div>
-                  ) : (
-                    <Button
-                      variant="outline"
-                      className="border border-primary text-primary"
-                      onClick={() => setIsDiscount((prev) => true)}
-                      disabled={disable}
-                    >
-                      <Percent />
-                    </Button>
-                  )}
-                </>
-              )}
+                      >
+                        <Percent />
+                      </Button>
+                    )}
+                  </>
+                )}
 
-              {currentJobCardStatus == 3 && (
-                <>
-                  {isInsurance ? (
-                    <div className="flex justify-around w-fit items-center space-x-3">
-                      <Input
-                        placeholder="Insurance on All Parts"
-                        type="number"
-                        // value={
-                        //   (table
-                        //     .getColumn("carNumber")
-                        //     ?.getFilterValue() as string) ?? ""
-                        // }
-                        onChange={(event) =>
-                          handleAllInsurance(Number(event.target.value))
-                        }
-                        className="max-w-sm"
+                {currentJobCardStatus == 3 && (
+                  <>
+                    {isInsurance ? (
+                      <div className="flex justify-around w-fit items-center space-x-3">
+                        <Input
+                          placeholder="Insurance on All Parts"
+                          type="number"
+                          // value={
+                          //   (table
+                          //     .getColumn("carNumber")
+                          //     ?.getFilterValue() as string) ?? ""
+                          // }
+                          onChange={(event) =>
+                            handleAllInsurance(Number(event.target.value))
+                          }
+                          className="max-w-sm"
+                          disabled={disable}
+                        />
+                        <X onClick={removeAllInsurance} />
+                      </div>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        className="border border-primary text-primary"
+                        onClick={() => {
+                          if (isInsuranceDetails) {
+                            setIsInsurance((prev) => true);
+                          } else {
+                            toast("Add Insurance Details to Proceed");
+                          }
+                        }}
                         disabled={disable}
-                      />
-                      <X onClick={removeAllInsurance} />
-                    </div>
-                  ) : (
-                    <Button
-                      variant="outline"
-                      className="border border-primary text-primary"
-                      onClick={() => {
-                        if (isInsuranceDetails) {
-                          setIsInsurance((prev) => true);
-                        } else {
-                          toast("Add Insurance Details to Proceed");
-                        }
-                      }}
-                      disabled={disable}
-                    >
-                      <Shield />
-                    </Button>
-                  )}
-                </>
-              )}
-            </div>
-          )}
+                      >
+                        <Shield />
+                      </Button>
+                    )}
+                  </>
+                )}
+              </div>
+            ))}
         </div>
 
         <Table className="border-b">
